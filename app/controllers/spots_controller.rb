@@ -9,23 +9,21 @@ class SpotsController < ApplicationController
 end
 
 
+def show
+  @spot = Spot.find(params[:id])
 
+  		#sets up hash for map marker
+  		@hash = Gmaps4rails.build_markers(@spot) do |spot, marker|
+  		  marker.lat spot.latitude
+  		  marker.lng spot.longitude
+  		  marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/"+"#{spot.address}"+"'>Get Directions With Google Maps</a>"
+  		  marker.json({ title: spot.title})
+  		end
+
+end
 def new
 		@spot = Spot.new
 	end
-
-  def show
-    @spot = Spot.find(params[:id])
-
-    		#sets up hash for map marker
-    		@hash = Gmaps4rails.build_markers(@spot) do |spot, marker|
-    		  marker.lat spot.latitude
-    		  marker.lng spot.longitude
-    		  marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/"+"#{spot.address}"+"'>Get Directions With Google Maps</a>"
-    		  marker.json({ title: spot.title })
-    end
-
-  end
 
 	# POST "/farms"
 	def create
@@ -38,16 +36,13 @@ def new
 
 			render :new
 		end
+
 end
 
-
-
-private
-
-
-
+    private
 
 def spot_params
- params.require(:spot).permit(:title, :address)
+  params.require(:spot).permit(:title, :address)
 end
+
 end

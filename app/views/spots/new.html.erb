@@ -1,11 +1,12 @@
 <div class="col-md-6 col-md-offset-3">
   <h1>Add A New Farm!</h1>
   <%= form_for @spot do |f| %>
-  <%= f.label "street name or restaurants near this place?" %>
+
   <br/>
   <%= f.text_field :title, class: "form-control" %>
   <br/>
   <%= f.label "What is the address of the spot?" %>
+  <br>
   <br/>
   <%= "format: 1234 Some Road, City, State 10099" %>
   <br/>
@@ -13,7 +14,7 @@
   <br/>
 
     <br/>
-    <%= f.submit "Add Your spot", class: "btn btn-success btn-lg btn-block" %>
+    <%= f.submit %>
   <% end %>
   <br/>
   <br/>
