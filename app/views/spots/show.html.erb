@@ -1,0 +1,18 @@
+
+<div class="col-md-8 col-md-offset-2">
+  <div class="directions_div">
+    <br/>
+    <%= link_to "Get Directions", "https://www.google.com/maps/place/#{@spot.address}", :target => "_blank" %>
+    <br/>
+
+  <h1>
+    <%= @spot.title %>
+  </h1>
+</div>
+<div class="col-md-6 col-md-offset-2">
+  <h4>
+    <h4>
+      <%= "Address" %>
+    </h4>
+    <%= @spot.address %>
+    <h4>
