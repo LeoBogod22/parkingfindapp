@@ -1,5 +1,66 @@
+
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="logLocation()">Try It</button>
+<script>
+var successCallback = function(data) {
+  document.getElementById('demo').innerHTML=('latitude: ' + data.coords.latitude + ' longitude: ' + data.coords.longitude);
+};
+
+var failureCallback = function() {
+    console.log('location failure :(');
+};
+
+var logLocation = function() {
+
+    //determine if the handset has client side geo location capabilities
+    if(navigator.geolocation){
+       navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
+    }
+    else{
+       alert("Functionality not available");
+    }
+};
+
+
+
+</script>
+
+
+<p id="demo">location<p/>
+
+
+<br></br>
+<br></br>
+<br></br>
+
+
+<div style='width: 800px;'>
+    <div id="geolocation" style='width: 800px; height: 400px;'></div>
+  </div>
+<script>
+var handler = Gmaps.build('Google');
+handler.buildMap({ internal: {id: 'geolocation'} }, function(){
+  // be aware chrome >= 50 requires https for geolocation to work
+  if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(displayOnMap);
+});
+
+function displayOnMap(position){
+  var marker = handler.addMarker({
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  });
+  handler.map.centerOn(marker);
+};
+
+</script>
+
+
+
 <div class="col-md-6 col-md-offset-3">
-  <h1>Add A New Farm!</h1>
+  <h1>Add A New Spot!</h1>
   <%= form_for @spot do |f| %>
 
   <br/>
@@ -12,10 +73,14 @@
   <br/>
   <%= f.text_field :address, class: "form-control" %>
   <br/>
-
+  <%= hidden_field_tag 'latitude', value = ''%>
+   <%= hidden_field_tag 'longitude', value = ''%>
     <br/>
     <%= f.submit %>
   <% end %>
   <br/>
   <br/>
 </div>
+
+
+<p id="demo"></p>
