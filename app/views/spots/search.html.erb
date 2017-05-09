@@ -1,0 +1,46 @@
+<div style="width:100%;">
+  <div id="map" style="width: 100%; height: 500px;">
+    <script>
+    handler = Gmaps.build('Google');
+handler.buildMap({
+	provider: { mapTypeId: google.maps.MapTypeId.HYBRID, maxZoom: 16 },
+	internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+</script>
+  </div>
+</div>
+<div class="col-md-10 col-md-offset-1">
+  <h2>
+    <%= "Spots Near: #{params[:search].titleize}" %>
+  </h2>
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Name</th>
+      <th>Address</th>
+
+      <th>Distance</th>
+    </thead>
+    <tbody>
+      <% @spots.each do |f| %>
+        <tr>
+          <td>
+            <%= link_to f.title, spot_path(f), method: "get" %>
+          </td>
+          <td>
+            <%= f.address %>
+          </td>
+
+          <td>
+            <strong>
+              <%= f.distance.round(2) %>
+            </strong>
+            <%= "miles" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

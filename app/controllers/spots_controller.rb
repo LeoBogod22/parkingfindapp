@@ -23,6 +23,7 @@ def show
 end
 def new
 		@spot = Spot.new
+    @user= User.all
 	end
 
 	# POST "/farms"
@@ -37,6 +38,38 @@ def new
 			render :new
 		end
 
+end
+
+
+# GET "/spots/search"
+	def search
+		@location = params[:search]
+		@distance = params[:miles]
+		@spots = Spot.near(@location, @distance)
+
+		if @location.empty?
+			 flash[:notice] ="You can't search without a search term; please enter a location and retry!"
+			redirect_to "/"
+		else
+			if @spots.length < 1
+			 flash[:notice] = "Sorry! We couldn't find any farms within #{@distance} miles of #{@location}."
+				redirect_to "/"
+			else
+				search_map(@spots)
+			end
+		end
+
+end
+
+
+def search_map(spots)
+		@spots = spots
+		@hash = Gmaps4rails.build_markers(@spots) do |spots, marker|
+			  marker.lat spots.latitude
+			  marker.lng spots.longitude
+			  marker.infowindow "<a href='/spots/"+"#{spots.id}"+"'>#{spots.title}, #{spots.address}</a>"
+			  marker.json({ title: spots.title, id: spots.id })
+			end
 end
 
     private
