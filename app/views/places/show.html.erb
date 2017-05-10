@@ -1,0 +1,36 @@
+<header><h1 class="display-4"><%= @place.title %></h1></header>
+
+<p>Address: <%= @place.address %></p>
+<p>Coordinates: <%= @place.latitude %> <%= @place.longitude %></p>
+
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@place.latitude},#{@place.longitude}&markers=#{@place.latitude},#{@place.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+              class: 'img-fluid img-rounded', alt: "#{@place.title} on the map"%>
+              <div class="col-md-10 col-md-offset-1">
+                <h2>Recently Addeds potss</h2>
+                <% @recent_spots.each do |f| %>
+                  <div class="col-md-4 col-sm-6">
+                    <div class="farm_sum">
+                      <div class="button_div first_button">
+                        <h4>
+                          <%= link_to f.title.truncate(60), spot_path(f), method: "get" %>
+                        </h4>
+                        <br/>
+                        <strong>
+                          <%= "Address: " %>
+                        </strong>
+                        <%= f.address.truncate(30) %>
+                        <br/>
+                        <strong>
+                          <%= "status: " %>
+                           <%= f.status %>
+                         </strong>
+                        <br/>
+                        <br/>
+                      </div>
+                      <div class="button_div real_button_div">
+                        <%= button_to "View spot", spot_path(f), method: "get", class: "btn btn-info btn-block" %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>

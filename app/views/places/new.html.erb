@@ -1,0 +1,127 @@
+
+
+<div style='width: 800px;'>
+    <div id="geolocation" style='width: 900px; height: 400px;'></div>
+  </div>
+<script>
+var handler = Gmaps.build('Google');
+handler.buildMap({ internal: {id: 'geolocation'} }, function(){
+  // be aware chrome >= 50 requires https for geolocation to work
+  if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(displayOnMap);
+});
+
+function displayOnMap(position){
+  var marker = handler.addMarker({
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  });
+  handler.map.centerOn(marker);
+  handler.getMap().setZoom(16);
+};
+
+</script>
+
+<p>Click the button to get your coordinates. Copy paste them in the fields to get your address</p>
+
+</address></p>
+
+<button onclick="logLocation()">Try It</button>
+<script>
+var successCallback = function(data) {
+  document.getElementById('demo').innerHTML=('latitude: ' + data.coords.latitude + ' longitude: ' + data.coords.longitude);
+};
+
+var failureCallback = function() {
+    console.log('location failure :(');
+};
+
+var logLocation = function() {
+
+    //determine if the handset has client side geo location capabilities
+    if(navigator.geolocation){
+       navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
+    }
+    else{
+       alert("Functionality not available");
+    }
+};
+
+
+
+</script>
+
+
+<p id="demo"><p/>
+
+
+
+
+
+
+
+  <h4>Enter either address or coordinates</h4>
+
+
+      <%= form_for @place do |f| %>
+    <small class="text-muted">You can also enter IP. Your IP is <%= request.ip %></small>
+
+
+  <div class="form-group row">
+    <div class="col-sm-1">
+      <%= f.label :latitude %>
+    </div>
+
+    <div class="col-sm-3">
+      <%= f.text_field :latitude, :id => 'demo', class: "form-control" %>
+    </div>
+
+    <div class="col-sm-1">
+      <%= f.label :longitude %>
+    </div>
+
+    <div class="col-sm-3">
+      <%= f.text_field :longitude, :id => 'demo', class: "form-controls" %>
+    </div>
+
+
+
+  <%= f.submit 'Add!', class: 'btn btn-primary' %>
+<% end %>
+
+<div class="card">
+  <div class="card-block">
+    <div id="map"></div>
+  </div>
+</div>
+
+
+<div class="col-md-10 col-md-offset-1">
+  <h2>Recently Addeds potss</h2>
+  <% @recent_spots.each do |f| %>
+    <div class="col-md-4 col-sm-6">
+      <div class="farm_sum">
+        <div class="button_div first_button">
+          <h4>
+            <%= link_to f.title.truncate(60), spot_path(f), method: "get" %>
+          </h4>
+          <br/>
+          <strong>
+            <%= "Address: " %>
+          </strong>
+          <%= f.address.truncate(30) %>
+          <br/>
+          <strong>
+            <%= "status: " %>
+            <%= f.status%>
+</strong>
+          <br/>
+          <br/>
+        </div>
+        <div class="button_div real_button_div">
+          <%= button_to "View spot", spot_path(f), method: "get", class: "btn btn-info btn-block" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

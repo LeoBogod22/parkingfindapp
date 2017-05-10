@@ -39,7 +39,26 @@ def new
 		end
 
 end
+def edit
+  @spot = Spot.find(params[:id])
 
+end
+
+def update
+  @spot = Spot.find(params[:id])
+  @spot.update(spot_params)
+  if @spot.save
+    respond_to do |format|
+      format.js
+      format.html
+    end
+    flash[:notice] = "Boat updated successfully"
+    redirect_to root_path
+  else
+    flash[:alert] = "There was an issue updating boat"
+    render :edit
+  end
+end
 
 # GET "/spots/search"
 	def search
@@ -75,7 +94,7 @@ end
     private
 
 def spot_params
-  params.require(:spot).permit(:title, :address)
+  params.require(:spot).permit(:title, :address, :status)
 end
 
 end

@@ -29,7 +29,7 @@ handler.buildMap({
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
-  handler.getMap().setZoom(16);
+  handler.getMap().setZoom(26);
 });
 </script>
 
@@ -47,3 +47,18 @@ handler.buildMap({
     </h4>
     <%= @spot.longitude %>
     <h4>
+</div>
+
+
+
+<h3>Nearby Locations</h3>
+<ul>
+<% for spot in @spot.nearbys(10) %>
+  <li><%= spot.address %> (<%= spot.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
+<p>
+  <%= link_to "change status", edit_spot_path(@spot) %>
+
+</p>
