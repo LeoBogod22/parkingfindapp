@@ -61,7 +61,7 @@ function displayOnMap(position){
 <div class="col-md-6 col-md-offset-3">
   <h1>Add A New Spot!</h1>
   <%= form_for @spot do |f| %>
-  	<%= f.select(:status, ['occupied'], :class => 'my')%>
+  	<%= f.select(:status, ['vacant'], :class => 'my')%>
   <br/>
   <%= f.text_field :title, class: "form-control" %>
   <br/>

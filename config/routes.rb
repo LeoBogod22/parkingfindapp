@@ -6,7 +6,7 @@ Rails.application.routes.draw do
  resources :spots
 
   resources :places
-root 'places#new'
+root 'welcome#index'
 get "/location" => "user#location"
 
  get "/search" => "spots#search"

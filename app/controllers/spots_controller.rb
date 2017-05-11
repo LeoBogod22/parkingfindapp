@@ -71,7 +71,7 @@ end
 			redirect_to "/"
 		else
 			if @spots.length < 1
-			 flash[:notice] = "Sorry! We couldn't find any farms within #{@distance} miles of #{@location}."
+			 flash[:notice] = "Sorry! We couldn't find any parking spots within #{@distance} miles of #{@location}."
 				redirect_to "/"
 			else
 				search_map(@spots)
