@@ -19,16 +19,23 @@ def show
   		  marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/"+"#{spot.address}"+"'>Get Directions With Google Maps</a>"
   		  marker.json({ title: spot.title})
   		end
+      @reviews = Review.where(spot_id: @spot.id).order("created_at DESC")
+
+       if @reviews.blank?
+         @avg_review = 0
+       else
+         @avg_review = @reviews.average(:rating).round(2)
+       end
 
 end
 def new
-		@spot = Spot.new
+		@spot = current_user.spots.build
     @user= User.all
 	end
 
 	# POST "/farms"
 	def create
-		@spot= Spot.new(spot_params)
+		@spot= current_user.spots.build(spot_params)
 
 		if @spot.save
 

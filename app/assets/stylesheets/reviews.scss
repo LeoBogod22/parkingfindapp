@@ -1,0 +1,18 @@
+// Place all the styles related to the reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.review_title {
+	margin: 0 0 20px 0;
+}
+.reviews {
+	padding: 15px 0;
+	border-bottom: 1px solid #EAEAEA;
+}
+	.star-rating {
+		padding-bottom: 8px;
+	}
+em{
+  color:black;
+  font-size: 50px;
+}

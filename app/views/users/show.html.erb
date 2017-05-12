@@ -1,0 +1,33 @@
+
+    <%= link_to "Write Review", new_user_review_path(@user), class: "btn btn-danger" %>
+
+<div class="star-rating" data-score= <%= @avg_review %> ></div>
+       <em><%= "#{@reviews.length} reviews" %></em>
+       <br></br>
+       <td><strong style="color:#grey;font-size:40px;">Rating:</strong></td>
+                      <td><%= @user.rating %></td>
+                      <% if @reviews.blank? %>
+                            <h3>No reviews just yet, would you like to add the first!</h3>
+                            <%= link_to "Write Review", new_user_review_path(@user), class: "btn btn-danger" %>
+                          <% else %>
+                            <% @reviews.each do |review| %>
+                              <div class="reviews">
+                                <div class="star-rating" data-score= <%= review.rating %> ></div>
+                                <p style="font-size:20px;"><%= review.comment %></p>
+                              </div>
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <script>
+                      $('.star-rating').raty({
+                        path: '/assets/',
+                        readOnly: true,
+                        score: function() {
+                              return $(this).attr('data-score');
+                      }
+                    });
+                  </script>

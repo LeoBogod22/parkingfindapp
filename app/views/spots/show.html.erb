@@ -47,7 +47,13 @@ handler.buildMap({
     </h4>
     <%= @spot.longitude %>
     <h4>
+
+
+      <div class="comment-head">
+          <% if(@spot.user_id) %>
+            <h1 class="comment-name by-author">Posted by <%=link_to  User.find(@spot.user_id).email, @spot.user%></h1>
 </div>
+<%end%>
 
 
 

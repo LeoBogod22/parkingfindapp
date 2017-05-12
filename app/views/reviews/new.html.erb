@@ -1,0 +1,35 @@
+<%= form_for([@user, @review]) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" style="text-align:center;">
+    <div id="star-rating"></div>
+  </div>
+  <br></br>
+  <div class="field"style="text-align:center; color:black;">
+    <%= f.label :comment %><br>
+    <%= f.text_area :comment %>
+  </div>
+  <div class="actions"style="text-align:center;">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script>
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });
+
+
+
+  </script>

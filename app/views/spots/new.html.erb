@@ -1,5 +1,4 @@
 
-
 <p>Click the button to get your coordinates.</p>
 
 <button onclick="logLocation()">Try It</button>
@@ -7,13 +6,10 @@
 var successCallback = function(data) {
   document.getElementById('demo').innerHTML=('latitude: ' + data.coords.latitude + ' longitude: ' + data.coords.longitude);
 };
-
 var failureCallback = function() {
     console.log('location failure :(');
 };
-
 var logLocation = function() {
-
     //determine if the handset has client side geo location capabilities
     if(navigator.geolocation){
        navigator.geolocation.getCurrentPosition(successCallback, failureCallback);
@@ -22,9 +18,6 @@ var logLocation = function() {
        alert("Functionality not available");
     }
 };
-
-
-
 </script>
 <div class="container-fluid">
   <h1>Add A New Spot!</h1>
@@ -67,7 +60,6 @@ handler.buildMap({ internal: {id: 'geolocation'} }, function(){
   if(navigator.geolocation)
     navigator.geolocation.getCurrentPosition(displayOnMap);
 });
-
 function displayOnMap(position){
   var marker = handler.addMarker({
     lat: position.coords.latitude,
@@ -75,7 +67,6 @@ function displayOnMap(position){
   });
   handler.map.centerOn(marker);
 };
-
 </script>
 
 
