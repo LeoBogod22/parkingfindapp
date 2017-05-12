@@ -52,7 +52,7 @@ def update
       format.js
       format.html
     end
-    flash[:notice] = "Boat updated successfully"
+    flash[:notice] = "Your spot has successfully be Updated"
     redirect_to root_path
   else
     flash[:alert] = "There was an issue updating boat"

@@ -1,7 +1,7 @@
 
 
 <div style='width: 800px;'>
-    <div id="geolocation" style='width: 900px; height: 400px;'></div>
+    <div id="geolocation" style='width: 1450px; height: 400px;'></div>
   </div>
 <script>
 var handler = Gmaps.build('Google');
@@ -26,12 +26,16 @@ function displayOnMap(position){
 
 </address></p>
 
-<button onclick="logLocation()">Try It</button>
+<button onclick="logLocation()">Get your Location!</button>
 <script>
 var successCallback = function(data) {
   document.getElementById('demo').innerHTML=('latitude: ' + data.coords.latitude + ' longitude: ' + data.coords.longitude);
-};
 
+  var lat = data.coords.latitude;
+  var long = data.coords.longitude;
+  document.getElementById('demos').value=lat;
+  document.getElementById('demo2').value=long;
+};
 var failureCallback = function() {
     console.log('location failure :(');
 };
@@ -73,7 +77,7 @@ var logLocation = function() {
     </div>
 
     <div class="col-sm-3">
-      <%= f.text_field :latitude, :id => 'demo', class: "form-control" %>
+      <%= f.text_field :latitude, :id => 'demos', class: "form-control" %>
     </div>
 
     <div class="col-sm-1">
@@ -81,7 +85,7 @@ var logLocation = function() {
     </div>
 
     <div class="col-sm-3">
-      <%= f.text_field :longitude, :id => 'demo', class: "form-controls" %>
+      <%= f.text_field :longitude, :id => 'demo2', class: "form-control" %>
     </div>
 
 
@@ -96,8 +100,8 @@ var logLocation = function() {
 </div>
 
 
-<div class="col-md-10 col-md-offset-1">
-  <h2>Recently Addeds potss</h2>
+<div class="container-fluid">
+  <h2>Recently Addeds Spots</h2>
   <% @recent_spots.each do |f| %>
     <div class="col-md-4 col-sm-6">
       <div class="farm_sum">

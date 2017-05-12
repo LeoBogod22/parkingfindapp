@@ -3,7 +3,7 @@
     <script>
     handler = Gmaps.build('Google');
 handler.buildMap({
-	provider: { mapTypeId: google.maps.MapTypeId.HYBRID, maxZoom: 16 },
+	provider: { mapTypeId: google.maps.MapTypeId.HYBRID, maxZoom: 13 },
 	internal: {id: 'map'}}, function(){
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
   handler.bounds.extendWith(markers);
@@ -12,11 +12,11 @@ handler.buildMap({
 </script>
   </div>
 </div>
-<div class="col-md-10 col-md-offset-1">
+<div class="container-fluid">
   <h2>
     <%= "Spots Near: #{params[:search].titleize}" %>
   </h2>
-  <table class="table table-striped table-hover">
+  <table class="table table-striped table-hover" >
     <thead>
       <th>Name</th>
       <th>Address</th>
@@ -29,11 +29,11 @@ handler.buildMap({
           <td>
             <%= link_to f.title, spot_path(f), method: "get" %>
           </td>
-          <td>
+          <td class="td1">
             <%= f.address %>
           </td>
 
-          <td>
+          <td class="td1">
             <strong>
               <%= f.distance.round(2) %>
             </strong>

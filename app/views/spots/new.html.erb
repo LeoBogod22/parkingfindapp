@@ -26,6 +26,28 @@ var logLocation = function() {
 
 
 </script>
+<div class="container-fluid">
+  <h1>Add A New Spot!</h1>
+  <%= form_for @spot do |f| %>
+  	<%= f.select(:status, ['vacant'], :class => 'my')%>
+  <br/>
+  <%= f.text_field :title, class: "form1" %>
+  <br/>
+  <%= f.label "What is the address of the spot?" %>
+  <br>
+  <br/>
+  <%= "format: 1234 Some Road, City, State 10099" %>
+  <br/>
+  <%= f.text_field :address, class: "form1" %>
+  <br/>
+  <%= hidden_field_tag 'latitude', value = ''%>
+   <%= hidden_field_tag 'longitude', value = ''%>
+    <br/>
+    <%= f.submit %>
+  <% end %>
+  <br/>
+  <br/>
+</div>
 
 
 <p id="demo"><p/>
@@ -57,29 +79,6 @@ function displayOnMap(position){
 </script>
 
 
-
-<div class="col-md-6 col-md-offset-3">
-  <h1>Add A New Spot!</h1>
-  <%= form_for @spot do |f| %>
-  	<%= f.select(:status, ['vacant'], :class => 'my')%>
-  <br/>
-  <%= f.text_field :title, class: "form-control" %>
-  <br/>
-  <%= f.label "What is the address of the spot?" %>
-  <br>
-  <br/>
-  <%= "format: 1234 Some Road, City, State 10099" %>
-  <br/>
-  <%= f.text_field :address, class: "form-control" %>
-  <br/>
-  <%= hidden_field_tag 'latitude', value = ''%>
-   <%= hidden_field_tag 'longitude', value = ''%>
-    <br/>
-    <%= f.submit %>
-  <% end %>
-  <br/>
-  <br/>
-</div>
 
 
 <p id="demo"></p>
