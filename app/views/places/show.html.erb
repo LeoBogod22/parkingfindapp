@@ -6,7 +6,7 @@
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@place.latitude},#{@place.longitude}&markers=#{@place.latitude},#{@place.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
               class: 'img-fluid img-rounded', alt: "#{@place.title} on the map"%>
               <div class="col-md-10 col-md-offset-1">
-                <h2>Recently Addeds potss</h2>
+                <h2>Nearby spots</h2>
                 <% @recent_spots.each do |f| %>
                   <div class="col-md-4 col-sm-6">
                     <div class="farm_sum">
@@ -23,6 +23,7 @@
                         <strong>
                           <%= "status: " %>
                            <%= f.status %>
+                            (<%= f.distance.round(2) %> miles)
                          </strong>
                         <br/>
                         <br/>

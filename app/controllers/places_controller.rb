@@ -6,7 +6,8 @@ class PlacesController < ApplicationController
  end
  def show
     @place = Place.find(params[:id])
-        @recent_spots = Spot.near(@place)
+        @recent_spots = Spot.near(@place,2)
+
   end
  def create
    @place = Place.new(place_params)

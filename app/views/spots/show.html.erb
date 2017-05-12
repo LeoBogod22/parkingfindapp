@@ -8,7 +8,7 @@
 <div class="col-md-8 col-md-offset-2">
   <div class="directions_div">
     <br/>
-    <%= link_to "Get Directions", "https://www.google.com/maps/place/#{@spot.address}", :target => "_blank" %>
+  <h1>  <%= link_to "Get Directions", "https://www.google.com/maps/place/#{@spot.address}", :target => "_blank" %> </h1>
     <br/>
 
   <h1>
@@ -53,8 +53,8 @@ handler.buildMap({
 
 <h3>Nearby Locations</h3>
 <ul>
-<% for spot in @spot.nearbys(10) %>
-  <li><%= spot.address %> (<%= spot.distance.round(2) %> miles)</li>
+<% for spot in @spot.nearbys(2) %>
+  <li><%= link_to spot.address, spot %> (<%= spot.distance.round(2) %> miles)</li>
 <% end %>
 </ul>
 
