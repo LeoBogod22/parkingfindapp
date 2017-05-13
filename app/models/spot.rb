@@ -10,7 +10,7 @@ ratyrate_rater
 validates_presence_of :title
 validates_presence_of :address
 
-
+validates_presence_of :phonenumber
 belongs_to :user
 has_many :reviews
   after_validation :geocode

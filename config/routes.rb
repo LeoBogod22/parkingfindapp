@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :views
   devise_for :models
-post '/ratings' => "ratings#create"
+
+
+get 'profile', to: "users#profile"
  resources :spots
- 
+
  resources :users do
 
   	resources :reviews, except: [:show, :index]

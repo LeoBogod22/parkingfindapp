@@ -36,19 +36,21 @@ handler.buildMap({
 </div>
 <div class="col-md-6 col-md-offset-2">
   <h4>
-    <h4>
+    <h3>
       <%= "Address" %>
-    </h4>
+    </h3>
     <%= @spot.address %>
-    <h4>
-    </h4>
+
     <%= @spot.latitude %>
-    <h4>
-    </h4>
+    <h3>
+    </h3>
     <%= @spot.longitude %>
-    <h4>
+    <h3>
 
-
+      <h3>
+    <p> taking the spot? call the user below! </p>
+          <%= @spot.phonenumber %>
+      </h3>
       <div class="comment-head">
           <% if(@spot.user_id) %>
             <h1 class="comment-name by-author">Posted by <%=link_to  User.find(@spot.user_id).email, @spot.user%></h1>

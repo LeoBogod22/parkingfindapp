@@ -23,11 +23,15 @@ var logLocation = function() {
   <h1>Add A New Spot!</h1>
   <%= form_for @spot do |f| %>
   	<%= f.select(:status, ['vacant'], :class => 'my')%>
+
+      <%= "title of the area" %>
+
   <br/>
   <%= f.text_field :title, class: "form1" %>
   <br/>
-  <%= f.label "What is the address of the spot?" %>
+  <%= f.label "provide your number so users can call you" %>
   <br>
+    <%= f.telephone_field :phonenumber, class: "form1" %>
   <br/>
   <%= "format: 1234 Some Road, City, State 10099" %>
   <br/>

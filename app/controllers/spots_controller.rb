@@ -101,7 +101,7 @@ end
     private
 
 def spot_params
-  params.require(:spot).permit(:title, :address, :status)
+  params.require(:spot).permit(:title, :address, :status, :phonenumber)
 end
 
 end
