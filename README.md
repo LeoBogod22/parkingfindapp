@@ -1,5 +1,5 @@
 ![alt text](app/assets/images/SmartPark.png)
-This tool accepts a parking spot address from a user,  geocodes the address to lattitude and longitude , displays it on the map  and converts the Lattitude and Longitude to a real address. 
+This tool accepts a parking spot address from a user, geocodes the  address to latitude longitude, displays it on the map  and converts the Latitude and Longitude to a real address. 
 
 
 
