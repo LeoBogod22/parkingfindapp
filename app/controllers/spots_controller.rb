@@ -33,7 +33,7 @@ def new
     @user= User.all
 	end
 
-	# POST "/farms"
+
 	def create
 		@spot= current_user.spots.build(spot_params)
 
