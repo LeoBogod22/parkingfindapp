@@ -6,7 +6,7 @@ This tool accepts a parking spot address from a user, geocodes the  address to l
 <h1> About </h1>
 
 
-SmartPark helps users find and rent public parking spots around the city. Users provide the phonenumber and address of the parking spot.At the end users can give each other reviews.. Was created with Rails Gmaps4Rail + the geocoder gem.
+SmartPark helps users find and rent public parking spots around the city. Users provide the phonenumber and address of the parking spot as they are leaving , and user nearby can accept the parking spot.  After user has accepted the vacant parking spot dissapears from the menu.  At the end users can give each other reviews.. Was created with Rails Gmaps4Rail + the geocoder gem.
 
 
 
